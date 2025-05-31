@@ -43,9 +43,6 @@ $ docker compose up --build
 # (first run) load schema
 $ cat db/init.sql | docker compose exec -T db psql -U shake -d shakemap
 
-# visit dashboard
-http://localhost:3000
-
 🔌 Key Endpoints
 
 GET /api/quakes – returns the latest earthquakes (rolling 24 h)

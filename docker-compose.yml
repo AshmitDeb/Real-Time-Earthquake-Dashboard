@@ -1,0 +1,38 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: shake
+      POSTGRES_PASSWORD: shake
+      POSTGRES_DB: shakemap
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  api:
+    build: ./api
+    environment:
+      DATABASE_URL: postgres://shake:shake@db:5432/shakemap
+    depends_on:
+      - db
+    ports:
+      - "5000:5000"
+
+  analysis:
+    build: ./analysis
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - api
+    ports:
+      - "3000:80"
+
+volumes:
+  db-data:

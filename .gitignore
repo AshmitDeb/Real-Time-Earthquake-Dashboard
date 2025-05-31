@@ -1,0 +1,12 @@
+# dependencies / builds
+node_modules
+dist
+.vite
+.next
+.parcel-cache
+# docker volumes & images
+db-data
+*.log
+# editor / OS
+.DS_Store
+*.swp
